@@ -1,0 +1,5 @@
+projectKey=spring-boot-web-jsp
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/spring-boot-web-jsp
+ceTaskId=AXBYpl-CbrLRU03I3Ofe
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXBYpl-CbrLRU03I3Ofe
