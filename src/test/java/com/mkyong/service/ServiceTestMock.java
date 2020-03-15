@@ -44,7 +44,7 @@ import com.mkyong.dao.StatusEnum;
 //@ActiveProfiles("testing")
 
 
-// Iva
+// Iva Abadjieva
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 //@DataJpaTest
