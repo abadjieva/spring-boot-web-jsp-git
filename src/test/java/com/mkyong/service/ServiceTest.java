@@ -43,7 +43,7 @@ import com.mkyong.dao.StatusEnum;
 
 //@ActiveProfiles("testing")
 
-//TEST 08.04.2020
+//TEST 08.04.2020 IVA
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
