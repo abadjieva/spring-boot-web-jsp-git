@@ -65,41 +65,51 @@ public class ServiceTestMock {
 	
 	private static int a=4;
 
+	List<StatusEnum> listdef;
+	List<StatusEnum> listdef1;
+	
 	@BeforeClass
 	public static void testAllg(){
 		a = 5;
 	
 	}
 	//@Ignore("Before ignoriert")
-	@Before
-	public void vorTest(){
-		a = 5;
-	}
+
 	
+	@Before
+	public void vortestProcess2(){
+		System.out.println( "vorTestProcess-----");
+		a = 5;
+		StatusEnum ste = new StatusEnum();
+		ste.setId(1L);
+		ste.setStatus(Status.START);
+		ste.setVersion(1);
+		listdef= new ArrayList<>();
+		listdef1= new ArrayList<>();
+		listdef.add(ste);
+		listdef1.add(ste);
+		ste = new StatusEnum();
+		ste.setId(2L);
+		ste.setStatus(Status.START);
+		ste.setVersion(1);
+		listdef1.add(ste);
+	}
 	@Test
 	public void testProcess1() {
 		//int a = 6;
 		try{
 			System.out.println( "Tr1---------");
 			
-			StatusEnum ste = new StatusEnum();
-			ste.setId(1L);
-			ste.setStatus(Status.START);
-			ste.setVersion(1);
-			List<StatusEnum> listdef= new ArrayList<>();
-			listdef.add(ste);	
+
 			
 			Mockito.when(partnerDao.getAllesAusStatusEnum()).thenReturn(listdef);
-			List<StatusEnum> liste = partnerDao.getAllesAusStatusEnum();
-			assertEquals("liste ist null", liste, null );
-		//Integer ursprungsZahl = liste.size();
-		//System.out.println( "Tr2--------- "+ ursprungsZahl );
-		
-		service.setzenStatusStop(Status.STOP);
+			String antwort = service.getAllUserFromDAO();
+			assertEquals("Listen haben mehrere Elemente", antwort, "einzeln" );
+
 		//Mockito.verify(partnerDao).setzenStatusStop(Status.STOP);
 		
 		partnerDao.setzenStatusStop(Status.START);
-		Mockito.verify(partnerDao).setzenStatusStop(Status.STOP);
+		Mockito.verify(partnerDao).setzenStatusStop(Status.START);
 		System.out.println( "Richtig in die DB Runtime:---------");
 		List<StatusEnum> liste1 = partnerDao.getAllesAusStatusEnum();
 		//Integer ehoehungsZahl = liste1.size();
@@ -115,19 +125,21 @@ public class ServiceTestMock {
 
 	}
 
+
+
 	//@Ignore
 	@Test
 	public void testProcess2() {
-		List<User> lis = null;
-		
+				
 		try {
-	
-			lis=service.findAllUsers();
-			System.out.println("---------------OK "+lis.size());
-			//System.out.println(lis.size());
-			assertNotNull("LISTE IST not LEER!", lis);
+			System.out.println( "Tr2--------- " );
 			
+			Mockito.when(partnerDao.getAllesAusStatusEnum()).thenReturn(listdef1);
+			String antwort = service.getAllUserFromDAO();
+			assertEquals("Listen entsprivht nicht der Erwartung", antwort, "mehr" );
+
 			
+						
 		} catch (Exception e) {
 
 		}

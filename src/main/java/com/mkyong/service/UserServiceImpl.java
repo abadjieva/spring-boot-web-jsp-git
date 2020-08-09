@@ -12,6 +12,7 @@ import com.mkyong.User;
 import com.mkyong.UserList;
 import com.mkyong.dao.PartnerfirmaDAO;
 import com.mkyong.dao.Status;
+import com.mkyong.dao.StatusEnum;
 import com.mkyong.dao.UserEntity;
 
 
@@ -60,6 +61,22 @@ public class UserServiceImpl implements UserService{
 		user = partnerfirmaDao.getUserByName(username);
 		return user;
 	
+	}
+	
+	public String getAllUserFromDAO(){
+		List<StatusEnum> list = new ArrayList<StatusEnum>();
+		try{
+		list = partnerfirmaDao.getAllesAusStatusEnum();
+		if(list.size() ==1){
+			return "einzeln";
+		}
+		else{
+			return "mehr";
+		}
+		
+		}catch(Exception e){
+		return null;	
+		}
 	}
 
 }

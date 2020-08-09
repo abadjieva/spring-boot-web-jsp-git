@@ -26,5 +26,5 @@ public interface PartnerfirmaDAO{
 	void setzenStatusStop(Status status) throws Exception;
 	public List<StatusEnum> getAllesAusStatusEnum() throws Exception;
 	public UserEntity getUserByName(String username);
-
+	
 }
